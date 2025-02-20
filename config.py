@@ -2,13 +2,13 @@
 # Define channel-specific parameters
 channel_params = {
     "Iba1": {
-        "min_area": 40,
+        "min_area": 30,
         "max_area": 500,
         "low_sigma":0.6,
         "high_sigma": 5,
         "solidity_thresh": 0.2,
         "eccentricity_thresh": 0.99,
-        "min_distance": 30,
+        "min_distance": 20,
         "chambolle": False, #sometimes big processes close to the some get recognized as cells, use min_distance to filter out this - it refers as the minimum distance between 2 bb and will eliminate the smallest one
     },
     "PV": {

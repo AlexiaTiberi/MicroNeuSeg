@@ -2,7 +2,7 @@ import os
 from analysis import process_folder
 # ---------------- BATCH PROCESSING ---------------- #
 # Set the path to the parent directory containing all the folders
-parent_directory = r"E:\LAB_TIBERI\IMMUNO_INVIVO\TAKE_last"
+parent_directory = r"E:\LAB_TIBERI\IMMUNO_INVIVO\ROOT\newdata"
 savepath = r"E:\LAB_TIBERI\IMMUNO_INVIVO\new_data_filter"
 
 # Iterate through each subfolder and process

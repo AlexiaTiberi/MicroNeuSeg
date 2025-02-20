@@ -7,7 +7,7 @@ import numpy as np
 import re
 
 # 📂 Path to the image folder
-data_folder = r"E:\LAB_TIBERI\IMMUNO_INVIVO\ROOT\new\4T_RR_WT_M"
+data_folder = r"E:\LAB_TIBERI\IMMUNO_INVIVO\ROOT\newdata\3PG_RL_M_WT"
 output_folder = os.path.join(data_folder, "masks")
 os.makedirs(output_folder, exist_ok=True)
 

@@ -3,7 +3,7 @@ import pandas as pd
 from skimage import io
 
 # 📂 Define the root folder containing subfolders
-root_folder = r"E:\LAB_TIBERI\IMMUNO_INVIVO\ROOT\EXPORTS"
+root_folder = r"E:\LAB_TIBERI\IMMUNO_INVIVO\ROOT\newdata"
 
 # 📥 Load mask
 def load_mask(mask_path):
