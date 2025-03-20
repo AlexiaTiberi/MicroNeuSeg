@@ -8,8 +8,8 @@ channel_params = {
         "high_sigma": 5,
         "solidity_thresh": 0.2,
         "eccentricity_thresh": 0.99,
-        "min_distance": 20,
-        "chambolle": False, #sometimes big processes close to the some get recognized as cells, use min_distance to filter out this - it refers as the minimum distance between 2 bb and will eliminate the smallest one
+        "min_distance": 20,#sometimes big processes close to the some get recognized as cells, use min_distance to filter out this - it refers as the minimum distance between 2 bb and will eliminate the smallest one
+        "chambolle": False, 
     },
     "PV": {
         "min_area": 80,
