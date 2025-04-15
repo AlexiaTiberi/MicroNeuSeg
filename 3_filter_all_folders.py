@@ -1,39 +1,22 @@
+'''
+THIS IS A CODE THAT FILTERS THE SEGMENTED CELLS BASED ON THE MASK DRAWN with 2_masking.py
+SAVING FILTERED DATA IN A NEW FOLDER
+HOW TO USE:
+
+!!!!!!
+root_folder: folder containing all data to segment stored in multiple folders
+!!!!!!
+
+'''
+
 import os
-import pandas as pd
-from skimage import io
+from src.filtering import load_mask, load_centroids, save_filtered_centroids, filter_centroids_with_mask
 
-# 📂 Define the root folder containing subfolders
-root_folder = r"E:\LAB_TIBERI\IMMUNO_INVIVO\ROOT\newdata"
+# Define the root folder containing subfolders
+root_folder = r"E:\VSC_SSD\MicroNeuSeg\data"
 
-# 📥 Load mask
-def load_mask(mask_path):
-    mask = io.imread(mask_path, as_gray=True)
-    mask = (mask > 0).astype(int)  # Convert to binary mask
-    return mask
 
-# 📥 Load centroids for a specific channel
-def load_centroids(csv_path):
-    if os.path.exists(csv_path):
-        return pd.read_csv(csv_path)
-    else:
-        return pd.DataFrame(columns=["x", "y"])
-
-# 📤 Save filtered centroids
-def save_filtered_centroids(filtered_centroids, save_path):
-    filtered_centroids.to_csv(save_path, index=False)
-    print(f"Filtered centroids saved to: {save_path}")
-
-# 🚀 Filter centroids using the mask
-def filter_centroids_with_mask(mask, centroids):
-    filtered = []
-    for _, row in centroids.iterrows():
-        x, y = int(row['x']), int(row['y'])
-        if 0 <= y < mask.shape[0] and 0 <= x < mask.shape[1]:
-            if mask[y, x]:  # Check if the point is inside the mask
-                filtered.append((x, y))
-    return pd.DataFrame(filtered, columns=["x", "y"])
-
-# 🔄 Process all subfolders
+# Process all subfolders
 channels = ["Iba1", "PV", "NeuN"]
 
 for root, dirs, files in os.walk(root_folder):
