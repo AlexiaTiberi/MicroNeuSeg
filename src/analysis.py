@@ -1,3 +1,5 @@
+#this is the old version of the synthetic analysis, it was a little less effective in matching the average distance between true microglial cells but it is mostly the same results
+
 import pandas as pd
 import numpy as np
 from scipy.spatial import distance
@@ -10,9 +12,7 @@ from skimage import exposure
 def bootstrap_microglia_analysis_matching_avg_distance_2(
     identifier, image, savepath, coords_a, coords_b, mask, threshold, n_iterations=1, max_iterations=1):
     """
-    Perform bootstrapping on microglia coordinates, ensuring they fall within the mask,
-    and the average nearest distance matches the real microglia. Exclude synthetic neurons
-    that are not close enough to at least one microglia.
+    Create a synthetic microglial dataset
 
     Args:
     - identifier: Unique identifier for the analysis (used for saving results).
@@ -39,6 +39,7 @@ def bootstrap_microglia_analysis_matching_avg_distance_2(
     np.fill_diagonal(true_distances, np.inf)  # Ignore self-distances
     true_avg_distance = np.mean(np.min(true_distances, axis=1))
     coords_a = np.array(coords_a, dtype=np.float64)
+    print(f"the real av distance is {true_avg_distance}")
     # Sampling function with dynamic min_distance
     def sample_with_adjusted_min_distance(valid_indices, n_samples, target_avg_distance, max_iterations):
         """
@@ -72,7 +73,7 @@ def bootstrap_microglia_analysis_matching_avg_distance_2(
                 boot_avg_distance = np.mean(np.min(boot_distances, axis=1))
             else:
                 boot_avg_distance = 0
-            
+            print(f"the synthetic av distance is {boot_avg_distance}")
             # Adjust min_distance based on the difference
             if np.isclose(boot_avg_distance, target_avg_distance, atol=5):  # Allow small tolerance
                 return selected_coords
@@ -102,7 +103,7 @@ def bootstrap_microglia_analysis_matching_avg_distance_2(
         proximity_counts.append(proximity_count)
         avg_nearest_distances.append(np.mean(nearest_distances) if nearest_distances else np.nan)
         bootstrapped_coords_list.append(bootstrap_coords_a)
-
+    print(len(coords_a), len(bootstrap_coords_a))
     # Calculate means
     proximity_mean = np.mean(proximity_counts)
     distance_mean = np.mean(avg_nearest_distances)
@@ -113,64 +114,7 @@ def bootstrap_microglia_analysis_matching_avg_distance_2(
         "true_avg_distance": true_avg_distance,
         "bootstrapped_coords": bootstrapped_coords_list[0],  # Return the first iteration's coordinates  # Number of neurons retained
     }
-def bootstrap_microglia_analysis_matching_avg_distance_3(
-    identifier, image, savepath, coords_a, coords_b, mask, threshold, n_iterations=1, max_iterations=1
-):
-    """
-    Perform bootstrapping on microglia coordinates, ensuring they fall within the mask,
-    and the average nearest distance matches the real microglia. Exclude synthetic neurons
-    that are not close enough to at least one microglia.
 
-    Args:
-    - identifier: Unique identifier for the analysis (used for saving results).
-    - image: Background image for visualization.
-    - savepath: Path to save the output visualization.
-    - coords_a: Original microglia coordinates.
-    - coords_b: Coordinates of synthetic neurons.
-    - mask: Binary mask (True for valid region, False otherwise).
-    - threshold: Distance threshold for proximity.
-    - n_iterations: Number of bootstrap iterations.
-    - max_iterations: Maximum adjustment iterations for matching average distances.
-
-    Returns:
-    - Results dictionary with bootstrapped averages and visualized data.
-    """
-    # Ensure the mask is binary
-    mask = mask > 0
-
-    # Get valid pixel coordinates from the mask
-    valid_indices = np.argwhere(mask)  # Shape: (N, 2) for (row, col)
-    proximity_counts = []
-    avg_nearest_distances = []
-    bootstrapped_coords_list = []
-
-    for _ in range(n_iterations):
-        # Bootstrap sampling with adjusted min_distance
-        bootstrap_coords_a = valid_indices[np.random.choice(len(valid_indices), size=len(coords_a), replace=False)]
-
-        proximity_count = 0
-        nearest_distances = []
-
-        for cell_b in coords_b:
-            distances = distance.cdist([cell_b], bootstrap_coords_a, metric="euclidean")[0]
-            nearest_distance = np.min(distances)
-            nearest_distances.append(nearest_distance)
-            if nearest_distance <= threshold:
-                proximity_count += 1
-
-        proximity_counts.append(proximity_count)
-        avg_nearest_distances.append(np.mean(nearest_distances))
-        bootstrapped_coords_list.append(bootstrap_coords_a)
-
-    # Calculate means
-    proximity_mean = np.mean(proximity_counts)
-    distance_mean = np.mean(avg_nearest_distances)
-
-    return {
-        "proximity_mean": proximity_mean,
-        "distance_mean": distance_mean,
-        "bootstrapped_coords": bootstrapped_coords_list[0],  # Return the first iteration's coordinates  # Number of neurons retained
-    }
 
 def calculate_proximity_index_and_nearest_distance(channel_a, channel_b, threshold):
     """
