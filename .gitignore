@@ -3,5 +3,4 @@ __pycache__/
 .env
 *.csv
 *.ipynb_checkpoints/
-*.ipynb
-*.tif
+
