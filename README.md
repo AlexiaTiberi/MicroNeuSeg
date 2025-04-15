@@ -9,6 +9,7 @@
 The pipeline expects data organized as follows:
 
 ![alt text](./image.png)
+
 Each subfolder represents an animal and contains TIFF images named with the following format:
 
 <animal_name>_<section_number>_<marker>.tif
