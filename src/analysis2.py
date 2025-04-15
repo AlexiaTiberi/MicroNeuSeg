@@ -280,29 +280,32 @@ def process_folder2(filepath, savepath, pixel_size=0.7575758, threshold=15, visu
 
                 "NeuN_Density": [neun_data.shape[0] / area],
     
-                "Percent_Associated_PV": [percent_pv_associated],
-                "Proximity_MEAN_PV_BOOTSTRAP": [percent_pv_bootstrap],  
+                "Perc_Microglia_associated_PV_Observed": [percent_pv_associated],
+                "Perc_PV_associated_Microglia_Synthetic": [percent_pv_bootstrap],  
 
-                "Average_Nearest_Distance_PV": [avg_nearest_distance_pv / pixel_size],
-                "Average_Nearest_Distance_PV_BOOT": [bootstrap_results_pv["avg_nearest_distance"]  / pixel_size],
+                "Average_Nearest_Distance_PV_to_microglia_Observed": [avg_nearest_distance_pv / pixel_size],
+                "Average_Nearest_Distance_PV_to_microglia_Synthetic": [bootstrap_results_pv["avg_nearest_distance"]  / pixel_size],
                 
-                "Percent_Associated_NeuN": [percent_neu_associated],
-                "Proximity_MEAN_NEUN_BOOTSTRAP": [percent_neu_bootstrap], 
+                "Perc_Microglia_associated_NeuNPV_Observed": [percent_neu_associated],
+                "Perc_Microglia_associated_NeuNPV_Synthetic": [percent_neu_bootstrap], 
 
-                "Average_Nearest_Distance_NeuN": [avg_nearest_distance_neu / pixel_size],
-                "Average_Nearest_Distance_NeuN_BOOT": [bootstrap_results_neun["avg_nearest_distance"]  / pixel_size],
+                "Average_Nearest_Distance_NeuNPV_to_microglia_Observed": [avg_nearest_distance_neu / pixel_size],
+                "Average_Nearest_Distance_NeuNPV_to_microglia_Syntetic": [bootstrap_results_neun["avg_nearest_distance"]  / pixel_size],
 
-                "Percent_Microglia_Associated_with_PV": [percent_microglia_pv_associated],
+                "Perc_PV_associated_Microglia": [percent_microglia_pv_associated],
                 #"Proximity_MEAN_PVMICRO_BOOTSTRAP": [percent_pv_bootstrap_PVMICRO],
 
-                "Average_Nearest_Distance_PV-ass MICRO": [PVMICRO_average_nearest_distance  / pixel_size],
+                "Average_Nearest_Distance_microglia_to_PV": [PVMICRO_average_nearest_distance  / pixel_size],
                 #"Average_Nearest_Distance_PVMICRO_BOOT": [bootstrap_results_PVMICRO["distance_mean"]  / pixel_size],
 
-                "Percent_Microglia_Associated_with_NeuN": [percent_microglia_neu_associated],
+                "Perc_NeuNPV_associated_Microglia": [percent_microglia_neu_associated],
                 #"Proximity_MEAN_NEUNMICRO_BOOTSTRAP": [percent_neu_bootstrap_neunMICRO], 
 
-                "Average_Nearest_Distance_NeuN-ass MICRO": [neunMICRO_average_nearest_distance  / pixel_size],
+                "Average_Nearest_Distance_microglia_to_NeuNPV": [neunMICRO_average_nearest_distance  / pixel_size],
                 #"Average_Nearest_Distance_NeuNMICRO_BOOT": [bootstrap_results_neunMICRO["distance_mean"]  / pixel_size],
+
+                "E_I_ratio": [(percent_microglia_neu_associated -percent_microglia_pv_associated)/(percent_microglia_neu_associated +percent_microglia_pv_associated) if (percent_microglia_neu_associated + percent_microglia_pv_associated) != 0 else np.nan],
+
                 })
 
             output_filename = f"{identifier}.xlsx"
