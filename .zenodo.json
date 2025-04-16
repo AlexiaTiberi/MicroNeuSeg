@@ -1,0 +1,56 @@
+{
+    "title": "MicroNeuSeg: a Python-based software to segment and analyze microglial association with neurons in mouse microscopy images.",
+    "version": "1.0",
+    "license": "GPL-3.0",
+    "upload_type": "software",
+    "description": "<p>This upload contains a Python-based software to segment three channels of images: Microglia, PV, NeuN and analyze microglial association with neurons in mouse microscopy images. <\/p>",
+    "keywords": [
+      "Cell biology",
+      "Microscopy",
+      "Histology",
+      "image analysis",
+      "fluorescence",
+      "neuroscience",
+      "Cell segmentation",
+      "NeuN",
+      "PV",
+      "microglia"
+    ],
+    "access_right": "open",
+    "language": "eng",
+    "contributors": [
+      {
+        "name": "Tiberi, Alexia",
+        "affiliation": " BIO@SNS lab, Scuola Normale Superiore, Pisa, Italy",
+        "orcid": "0000-0002-0093-444X",
+        "type": "Editor"
+      },
+      {
+        "name": "Antonino, Cattaneo",
+        "affiliation": " BIO@SNS lab, Scuola Normale Superiore, Pisa, Italy",
+        "orcid": "",
+        "type": "Supervisor"
+      }
+    ],
+    "creators": [
+      {
+        "name": "Tiberi, Alexia",
+        "affiliation": " BIO@SNS lab, Scuola Normale Superiore, Pisa, Italy",
+        "orcid": "0000-0002-0093-444X",
+        "type": "Editor"
+      }
+    ],
+    "related_identifiers":[
+      {
+        "relation": "cites",
+        "scheme": "doi",
+        "identifier":"10.1101/781880",
+        "resource_type":"publication-preprint"
+      }
+    ],
+    "communities": [
+      {
+        "identifier": "scuolanormalesuperiore"
+      }
+    ]
+  }
