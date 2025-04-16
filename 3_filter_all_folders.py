@@ -22,6 +22,8 @@ channels = ["Iba1", "PV", "NeuN"]
 for root, dirs, files in os.walk(root_folder):
     if root == root_folder:
         continue
+    if os.path.basename(root) in ["masks", "output_csvs", "filtered_csvs"]:
+        continue  # skip internal folders
     mask_folder = os.path.join(root, "masks")
     csv_folder = os.path.join(root, "output_csvs")
     filtered_csv_folder = os.path.join(root, "filtered_csvs")

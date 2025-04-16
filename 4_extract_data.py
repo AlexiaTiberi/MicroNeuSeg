@@ -20,16 +20,17 @@ n_iterations: is the number of times to run the synthetic analysis, in a sort of
 
 import os
 from src.analysis2 import process_folder2
+from pathlib import Path
 # ---------------- BATCH PROCESSING ---------------- #
 # Set the path to the parent directory containing all the folders
 parent_directory = r"E:\VSC_SSD\MicroNeuSeg\data"
-savepath = r"E:\VSC_SSD\MicroNeuSeg\results"
+savepath = Path(r"E:\VSC_SSD\MicroNeuSeg\results")
 savepath.mkdir(parents=True, exist_ok=True)
 # Iterate through each subfolder and process
 for folder_name in os.listdir(parent_directory):
     folder_path = os.path.join(parent_directory, folder_name)
     if os.path.isdir(folder_path):
         print(f"Processing folder: {folder_name}")
-        process_folder2(folder_path, savepath, pixel_size=0.7575750, threshold=15, visualize=False, n_iterations=1)
+        process_folder2(folder_path, savepath, pixel_size=0.7575750, threshold=15, visualize=True, n_iterations=1)
 
 print("Batch processing complete.")

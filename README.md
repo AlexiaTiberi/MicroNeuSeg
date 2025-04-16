@@ -24,6 +24,7 @@ The pipeline consists of sequentially numbered scripts to be executed in order:
    - Tests segmentation configuration on data from a single animal folder - use "animal1" folder path as defined in the Data Setup and Folder Structure chapter.
    - Useful for interactive parameter adjustments via `config.py`.
    - Start with this to broadly set up the segmentation
+   - all my parameters for segmentation and extraction of the data have been optimized with a pixel size of circa 0.75 micron
 
 2. **1_segment_all_folders.ipynb / 1_segment_all.py**
    - Performs segmentation simultaneously across all animal folders - use "data" folder path as defined in the Data Setup and Folder Structure chapter.
@@ -39,6 +40,7 @@ The pipeline consists of sequentially numbered scripts to be executed in order:
 5. **4_extract_data.ipynb** 
    - This is the code that does the "data analysis"
    - It will output an excel file per section analyzed of all mice
+   - all my parameters for extraction of the data have been optimized with a pixel size of circa 0.75 micron
    
 ### Parameters Extracted (per section)
 
