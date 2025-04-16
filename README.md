@@ -1,3 +1,4 @@
+[![DOI](https://zenodo.org/badge/935595308.svg)](https://doi.org/10.5281/zenodo.15228610)
 # MicroNeuSeg
 
 **MicroNeuSeg** is a Python-based pipeline designed to perform spatial analysis of microglia and neurons in mouse brain imaging data. The pipeline processes 3 image channels—Microglia (cx3cr1gfp or Iba1), PV, and NeuN—and outputs the spatial coordinates of detected cells, enables region-of-interest masking, and allows the analysis of their relative spatial distributions.
