@@ -89,7 +89,7 @@ conda activate microneuseg
 #### Install Tensorflow 2.0 & stardist
 ```
 conda install -c conda-forge cudatoolkit=11.2 cudnn=8.1.0
-python -m pip install "tensorflow<2.11"
+pip install "tensorflow<2.11"
 pip install stardist
 ```
 
